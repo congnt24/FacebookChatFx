@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
 <?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Main_Controller">
+
+<BorderPane prefHeight="400.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -28,6 +29,16 @@
       </MenuBar>
    </top>
    <center>
-      <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <TextArea fx:id="textArea" editable="false" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
+   <bottom>
+      <BorderPane BorderPane.alignment="CENTER">
+         <right>
+            <Button fx:id="sendButton" mnemonicParsing="false" text="Send" BorderPane.alignment="CENTER" />
+         </right>
+         <center>
+            <TextField fx:id="textField" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </bottom>
 </BorderPane>

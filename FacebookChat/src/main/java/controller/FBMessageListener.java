@@ -38,8 +38,7 @@ public class FBMessageListener implements MessageListener, Runnable {
 		}
 	}
       if ((message != null) && (message.getBody() != null)) {
-    	  
-         System.out.println(entry.getName()+" : "+message.getBody());
+    	  Main_Controller.testDialog.setMessage(entry.getName()+" : "+message.getBody());
       }
    }
  

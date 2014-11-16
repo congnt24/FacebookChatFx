@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.SwingUtilities;
+
 import org.jivesoftware.smack.RosterEntry;
 import org.jivesoftware.smack.XMPPException;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -20,7 +23,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class ChatDialog extends Stage implements Initializable{
-	public static StringBuilder sb=new StringBuilder();
 	FBChatConnection fbConnect=Main.fbConnect;
 	RosterEntry entry;
 	@FXML
@@ -40,20 +42,27 @@ public class ChatDialog extends Stage implements Initializable{
 	}
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
 		sendButton.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent arg0) {
 				String message=textField.getText().trim();
 				if (message.length()!=0) {
-					sb.append(message+"\n");
-					textField.setText("");
 					try {
 						fbConnect.sendMessage(entry, message);
-						textArea.setText(sb.toString());
+						textArea.appendText(String.format("%100s", message)+"\n");
 					} catch (XMPPException e) {
 						e.printStackTrace();
 					}
+					textField.setText("");
 				}
+			}
+		});
+	}
+	public void setMessage(final String message){
+		System.out.println(message);
+		Platform.runLater(new Runnable() {
+			
+			public void run() {
+				textArea.appendText(String.format("%s", message)+"\n");
 			}
 		});
 	}

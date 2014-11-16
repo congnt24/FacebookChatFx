@@ -20,6 +20,7 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 
 public class Main_Controller implements Initializable{
+	public static ChatDialog testDialog;
 	@FXML ListView<RosterEntry> listView;
 	ObservableList<RosterEntry> listViewItem=FXCollections.observableArrayList();
 	
@@ -69,7 +70,7 @@ public class Main_Controller implements Initializable{
 				// TODO Auto-generated method stub
 				if (click.getClickCount()==2) {
 					RosterEntry entry=listView.getSelectionModel().getSelectedItem();
-					ChatDialog testDialog = new ChatDialog(entry);
+					testDialog = new ChatDialog(entry);
 					testDialog.showAndWait();
 				}
 			}

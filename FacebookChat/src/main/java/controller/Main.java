@@ -39,9 +39,11 @@ public class Main extends Application {
 							try {
 								root = loader.load();
 								Main_Controller ctrl=loader.getController();
+								ctrl.setFBChatManage(fbConnect);
+								ctrl.init();
 								Scene scene = new Scene(root);
 								//
-
+                                /*
 								List<RosterEntry> l = fbConnect.getFriends();
 								if(l!=null){
 									ctrl.setList(l);
@@ -49,7 +51,7 @@ public class Main extends Application {
 								else{
 									System.out.println("NULL"
 											+ "");
-								}
+								}*/
 								
 								primaryStage.setScene(scene);
 							} catch (IOException e) {

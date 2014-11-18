@@ -29,7 +29,7 @@ public class FBChatConnection {
       config.setDebuggerEnabled(false);
       connection = new XMPPConnection(config);
       connection.connect();
-      fbml = new FBMessageListener(connection);
+      fbml = new FBMessageListener(this);
       return connection.isConnected();
    }
  
@@ -62,7 +62,7 @@ public class FBChatConnection {
             	listFriends.add(entry);
             }
          }
-         fbml.setFriends(listFriends);
+        
          return listFriends;
       }
 	return null;
@@ -76,7 +76,12 @@ public class FBChatConnection {
          System.out.println("Your message has been sent to "+ friend.getName());
       }
    }
-   
+   public XMPPConnection getConnect(){
+	   return this.connection;
+   }
+   public FBMessageListener getMessageListener(){
+	   return this.fbml;
+   }
   /* public static void main(String[] args) {
       if (args.length == 0) {
         System.err.println("Usage: java FBConsoleChatApp [username_facebook] [password]");

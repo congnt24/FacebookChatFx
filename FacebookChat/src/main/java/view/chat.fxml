@@ -5,8 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane prefHeight="400.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<BorderPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerFbMessage">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -29,15 +28,15 @@
       </MenuBar>
    </top>
    <center>
-      <TextArea fx:id="textArea" editable="false" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <TextArea fx:id="txtTableMessage" editable="false" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
    <bottom>
       <BorderPane BorderPane.alignment="CENTER">
          <right>
-            <Button fx:id="sendButton" mnemonicParsing="false" text="Send" BorderPane.alignment="CENTER" />
+            <Button fx:id="send" mnemonicParsing="false" onAction="#sendMessage" text="Send" BorderPane.alignment="CENTER" />
          </right>
          <center>
-            <TextField fx:id="textField" BorderPane.alignment="CENTER" />
+            <TextField fx:id="txtNewMessage" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
    </bottom>

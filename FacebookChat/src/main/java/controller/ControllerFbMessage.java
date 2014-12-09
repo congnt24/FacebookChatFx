@@ -1,5 +1,7 @@
 package controller;
 
+import java.awt.event.TextEvent;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -21,15 +23,20 @@ public class ControllerFbMessage   {
     	FBChat =f;
     	connect = f.getConnect();
     	this.userFriend =u;
+    	send.setDefaultButton(true);
     }  	  
     @FXML public void sendMessage (ActionEvent event){
     	 try {
+    		if(connect.isConnected()){
+    		if(this.txtNewMessage.getText().length()>0){
 			this.FBChat.sendMessage(userFriend,this.txtNewMessage.getText());
 			this.txtTableMessage.setText(this.txtTableMessage.getText()+"\n"+connect.getUser()+":"+this.txtNewMessage.getText());
 	        this.txtNewMessage.setText("");
+    		} 
+    		}else{ this.txtTableMessage.setText(this.txtTableMessage.getText()+"\n"+"Mat Ket Noi Voi May Chu"); this.txtNewMessage.setText("");	}
 		} catch (XMPPException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			this.txtTableMessage.setText(this.txtTableMessage.getText()+"\n"+"Mat Ket Noi Voi May Chu");	
+			this.txtNewMessage.setText("");
 		}
          
     	

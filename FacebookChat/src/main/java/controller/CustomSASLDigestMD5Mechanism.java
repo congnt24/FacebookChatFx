@@ -16,7 +16,7 @@ public class CustomSASLDigestMD5Mechanism extends SASLMechanism {
 		
 	}
 	
-	//http://www.igniterealtime.org/builds/smack/docs/3.4.0/javadoc/org/jivesoftware/smack/sasl/SASLMechanism.html#authenticate%28java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String%29
+	
 
 		@Override
 		public void authenticate(String username, String host, CallbackHandler cbh)

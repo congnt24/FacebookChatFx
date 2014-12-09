@@ -25,7 +25,7 @@ public class FBMessage extends Stage{
 			try {
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/chat.fxml"));
 				this.setTitle(u.getName());
-				this.setScene(new Scene((Parent) loader.load(),450,250));
+				this.setScene(new Scene((Parent) loader.load(),450,400));
 				controller =(ControllerFbMessage)loader.<ControllerFbMessage>getController();
 				controller.init(f, u);
 			} catch (IOException e) {

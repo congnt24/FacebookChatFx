@@ -23,7 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class ChatDialog extends Stage implements Initializable{
-	FBChatConnection fbConnect=Main.fbConnect;
+	FBChatConnection fbConnect;//=Main.fbConnect;
 	RosterEntry entry;
 	@FXML
 		public Button sendButton;

@@ -1,8 +1,13 @@
 package controller;
 
+import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 
 import javafx.application.Platform;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 import org.apache.commons.collections.BidiMap;
 import org.jivesoftware.smack.Chat;
@@ -43,13 +48,7 @@ public class FBMessageListener  implements MessageListener,Runnable {
 	      int j;
 	      String key = null;
 	      RosterEntry entry = null;
-//	      while (it.hasNext()) {
-//	         entry = (RosterEntry) it.getValue();
-//	         key = (String) it.next();
-//	         
-//	         
-//	         if (entry.getUser().equalsIgnoreCase(chat.getParticipant()))  break;
-//	       }
+
 	      for(j=0;j<friends.size();j++){
 	      entry = (RosterEntry) friends.get(j+1);
 	       if (entry.getUser().equalsIgnoreCase(chat.getParticipant()))  break;
@@ -57,21 +56,16 @@ public class FBMessageListener  implements MessageListener,Runnable {
 	      if(j==friends.size())entry=null;
 	      System.out.println("chay dc den day chua:"+entry.getName());
 	      
-	      /*if ((message != null) && (message.getBody() != null)&& j<friends.size()) {
-	        int i=0;
-	        if(this.listFrameChat.size()==0)
-	            listFrameChat.add(new FBMessage(this.FBchat,entry));
-	        else {
-	        for (i=0;i<this.listFrameChat.size();i++)
-	            if(listFrameChat.get(i).equalsEntry(entry)) break;
-	        if (i==this.listFrameChat.size()) listFrameChat.add(new FBMessage(this.FBchat,entry));
-	        } 
-	       this.listFrameChat.get(i).setMessage(entry.getName()+":"+message.getBody());
-	       this.listFrameChat.get(i).show();
-	       } */
+	      
 	      Platform.runLater(new TaskView(FBchat,friends,listFrameChat,message,entry)); 
+	      playmp3();
 	   }
-	 
+	 private void playmp3(){
+		 String uriString = new File("src\\main\\java\\mp3\\ring.mp3").toURI().toString();
+     	 MediaPlayer player = new MediaPlayer( new Media(uriString));
+         player.play();
+		 
+	 }
 	   public void run() {
 	         conn.getChatManager().addChatListener(
 	         new ChatManagerListener() {

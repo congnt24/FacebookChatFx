@@ -293,12 +293,10 @@ public void run() {
     app.disconnect();
    
     }	
-	} else {
-		Platform.runLater(notconnect);
-	    
-	}
+	} 
 	} catch (XMPPException e1) {
-        Platform.runLater(notconnect);
+		if(e1.toString().contains("not-authorized"))  Platform.runLater(errorlogin);
+		else Platform.runLater(notconnect);
 		app.disconnect();
 		
 	}

@@ -32,7 +32,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="F:/BTL 2014/commons-collections-3.2.1/commons-collections-3.2.1.jar"/>
-	<classpathentry kind="lib" path="F:/BTL 2014/smack-3.2.1.jar"/>
+	<classpathentry kind="lib" path="commons-collections-3.2.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -30,7 +30,7 @@ public class ControllerFbMessage   {
     		if(connect.isConnected()){
     		if(this.txtNewMessage.getText().length()>0){
 			this.FBChat.sendMessage(userFriend,this.txtNewMessage.getText());
-			this.txtTableMessage.setText(this.txtTableMessage.getText()+"\n"+connect.getUser()+":"+this.txtNewMessage.getText());
+			this.txtTableMessage.setText(this.txtTableMessage.getText()+"\n"+connect.getUser().split("@")[0]+":"+this.txtNewMessage.getText());
 	        this.txtNewMessage.setText("");
     		} 
     		}else{ this.txtTableMessage.setText(this.txtTableMessage.getText()+"\n"+"Mat Ket Noi Voi May Chu"); this.txtNewMessage.setText("");	}

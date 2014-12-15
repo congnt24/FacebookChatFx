@@ -15,6 +15,7 @@ import org.jivesoftware.smack.Roster;
 import org.jivesoftware.smack.RosterEntry;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.packet.Presence;
+import org.jivesoftware.smackx.packet.VCard;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -35,20 +36,25 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
-public class Main_Controller  implements Runnable{
+public class Main_Controller  implements Runnable, Initializable{
 	public static ChatDialog testDialog;
-	@FXML ListView listView;
+	@FXML ListView<RosterEntry> listView;
 	@FXML CheckBox check;
 	@FXML Button   btnRefresh;
 	@FXML TextField filter;
 	@FXML Label stateConnect;
 	@FXML MenuItem close;
 	@FXML MenuItem logout;
+	Roster roster;
+	Image on;
+	Image off;
 	private FBChatConnection FBChat ;
 	private XMPPConnection connect;
 	private FBMessageListener fbml;
@@ -93,13 +99,13 @@ public void setPass(String pass){
 	this.pass= pass;
 }
 private synchronized void addListFriend(){
-	final ObservableList<String> items =FXCollections.observableArrayList();
+	listViewItem =FXCollections.observableArrayList();
     friends.clear();
     friendsinlist.clear();
     Task addlist1 = new Task<Void>() {
   	    public void run() {
   			// TODO Auto-generated method stub
-  	    listView.setItems(items);
+  	    listView.setItems(listViewItem);
   	    stateConnect.setText("");	
   			
   		}
@@ -113,7 +119,7 @@ private synchronized void addListFriend(){
   	Task addlist2 = new Task<Void>() {
   	    public void run() {
   			// TODO Auto-generated method stub
-  	    listView.setItems(items);
+  	    listView.setItems(listViewItem);
   	    stateConnect.setText("Mat Ket Noi Server");	
   			
   		}
@@ -135,12 +141,14 @@ private synchronized void addListFriend(){
             if ((presence != null) 
                && (presence.getType() != Presence.Type.unavailable)) {
                friendsinlist.put(i, entry);
-               items.add((i+1)+":"+entry.getName()+"[Online]");
+//               items.add((i+1)+":"+entry.getName()+"[Online]");
+               listViewItem.add(entry);
                i++;
             }else if (!check.isSelected())
             {
                 friendsinlist.put(i, entry);
-                items.add((i+1)+":"+entry.getName());
+//                items.add((i+1)+":"+entry.getName());
+                listViewItem.add(entry);
                 i++;
             
             }
@@ -221,7 +229,7 @@ System.exit(0);
 public void run() {
 	// TODO Auto-generated method stub
 	while(running){
-		ObservableList<String> items = this.listView.getItems();
+		ObservableList<RosterEntry> items = this.listView.getItems();
         try {
         	if(this.filter.getText().equals("")){
         	addListFriend();
@@ -236,6 +244,55 @@ public void run() {
         
     
 }
+	
+}
+
+
+public void initialize(URL location, ResourceBundle resources) {
+	// TODO Auto-generated method stub
+//	listView.setItems(listViewItem);
+	on = new Image("file:///"+System.getProperty("user.dir")+"/on.png");
+	off = new Image("file:///"+System.getProperty("user.dir")+"/off.png");
+//	roster=connect.getRoster();
+	listView.setCellFactory(new Callback<ListView<RosterEntry>, ListCell<RosterEntry>>() {
+
+		public ListCell<RosterEntry> call(ListView<RosterEntry> arg0) {
+			ListCell<RosterEntry> cell=new ListCell<RosterEntry>(){
+
+				@Override
+				protected void updateItem(RosterEntry user, boolean empty) {
+					// TODO Auto-generated method stub
+					super.updateItem(user, empty);
+					if (empty) {
+			            setText(null);
+			            setGraphic(null);
+					}else{
+						GridPane grid=new GridPane();
+						grid.setHgap(10);
+						grid.setVgap(4);
+						grid.setPadding(new Insets(0, 10, 0, 10));
+						Label name=new Label(user.getName());
+//			            name.getStyleClass().add("cache-list-name");
+						ImageView iv1 = new ImageView();
+						if (connect.getRoster().getPresence(user.getUser()).getType()==Presence.Type.available) {
+					         iv1.setImage(on);
+						}else{
+					         iv1.setImage(off);
+						}
+						grid.add(name, 1, 0);
+						grid.add(iv1, 0, 0);
+//						Label icon = new Label(GeocachingIcons.getIcon(cache).toString());
+//			            icon.setFont(Font.font("FontAwesome", FontWeight.BOLD, 24));
+//			            icon.getStyleClass().add("cache-list-icon");
+//			            grid.add(icon, 0, 0, 1, 2);     
+						setGraphic(grid);
+					}
+				}
+				
+			};
+			return cell;
+		}
+	});
 	
 }
 

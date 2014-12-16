@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javax.swing.SwingUtilities;
 
 import org.jivesoftware.smack.RosterEntry;
 import org.jivesoftware.smack.XMPPException;
@@ -56,7 +55,11 @@ public class ChatDialog extends Stage implements Initializable{
 				}
 			}
 		});
+		
+		
 	}
+	
+	
 	public void setMessage(final String message){
 		System.out.println(message);
 		Platform.runLater(new Runnable() {

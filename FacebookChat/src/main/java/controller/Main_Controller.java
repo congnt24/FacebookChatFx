@@ -226,12 +226,15 @@ public class Main_Controller  implements Runnable, Initializable{
 	@FXML public void handRefresh(ActionEvent event){
 		addListFriend();
 	}
+	@FXML public void handFillter(){
+		addListFriend();	
+	}
 	public void run() {
 		// TODO Auto-generated method stub
 		while(running){
 			ObservableList<RosterEntry> items = this.listView.getItems();
 	        try {
-	        	if(this.filter.getText().equals("")){
+	        	if(this.filter.getText().length()==0){
 	        	addListFriend();
 	            System.out.println("Da quet dc");
 	            }

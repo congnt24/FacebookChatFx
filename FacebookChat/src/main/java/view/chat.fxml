@@ -9,6 +9,7 @@
    <children>
       <Button fx:id="send" layoutX="374.0" layoutY="317.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="73.0" prefWidth="70.0" text="SEND" />
       <TextField fx:id="txtNewMessage" layoutY="317.0" prefHeight="73.0" prefWidth="361.0" />
-      <WebView fx:id="txtTableMessage" layoutX="7.0" layoutY="8.0" prefHeight="301.0" prefWidth="433.0" />
+      <WebView fx:id="txtTableMessage" layoutX="7.0" layoutY="8.0" prefHeight="278.0" prefWidth="433.0" />
+      <ListView fx:id="listView" layoutY="266.0" prefHeight="51.0" prefWidth="442.0" />
    </children>
 </Pane>

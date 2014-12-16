@@ -46,7 +46,7 @@ public class TaskView extends Task<Void>{
 	            if(listFrameChat.get(i).equalsEntry(entry)) break;
 	        if (i==this.listFrameChat.size()) listFrameChat.add(new FBMessage(this.FBchat,entry));
 	        } 
-	       this.listFrameChat.get(i).setMessage(entry.getName()+":"+message.getBody());
+	       this.listFrameChat.get(i).setMessage(entry.getName(), message.getBody());
 	       this.listFrameChat.get(i).show();
 	       }   
 	        

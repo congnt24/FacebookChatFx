@@ -36,8 +36,8 @@ public class FBMessage extends Stage{
 	        public boolean equalsEntry (RosterEntry u ){
 		    return userFriend.equals(u);
 		    }
-			public void setMessage(String string) {
-			controller.setMessage(string);	
+			public void setMessage(String name, String message) {
+			controller.setMessage(name, message);
 				
 			}
 
